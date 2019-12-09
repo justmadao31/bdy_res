@@ -29,7 +29,7 @@ router.post('/uploadCardImg', upload.single('pic'), function (req, res, next) {
         } else {
             gm(path.join(__dirname, '../public/images/cards/' + req.body.fileName))
                 .resize(480, 270, "!")
-                .write(path.join(__dirname, '../public/images/thumbnail/' + req.body.fileName), function (err) {
+                .write(path.join(__dirname, '../public/images/thumbnail/' + req.body.fileName), function (err, data) {
                     if (err) {
                         dataObj.err = err
                         dataObj.message = '创建缩略图失败'
