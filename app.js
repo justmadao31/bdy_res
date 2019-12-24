@@ -9,7 +9,16 @@ var usersRouter = require('./routes/users');
 var yuyuyuiRouter = require('./routes/yuyuyui');
 
 var app = express();
-
+app.all('*', function (req, res, next) {
+    //设置允许跨域的域名，*代表允许任意域名跨域
+    res.header("Access-Control-Allow-Origin", "*");
+    //允许的header类型
+    res.header("Access-Control-Allow-Headers", "content-type");
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type');//可以支持的消息首部列表
+    res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');//可以支持的提交方式
+    res.header('Content-Type', 'application/json;charset=utf-8');//响应头中定义的类型
+    next();
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
